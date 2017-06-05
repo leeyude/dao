@@ -1,0 +1,74 @@
+@import "../../../lib/styles/main.import.less";
+
+#mainHeader, #regHeader {
+  min-height: 80px;
+  background-color: white;
+  display: inline-block;
+
+
+  .navHolder {
+    margin: 12px 12% 12px 12%;
+  }
+
+  &.navbar-default {
+    border: 0;
+  }
+
+  .nav {
+    margin-left: 20px;
+
+    .signupButton {
+      margin-left: 30px;
+      margin-top: 4px;
+    }
+  }
+
+  .navItem {
+    margin-left: 30px;
+    margin-top: 22px;
+    padding: 0 0 6px 0;
+    margin-bottom: auto;
+    font-family: @Type-Text;
+    font-size: 18px;
+    color: @Brown-Basic;
+    font-weight: 400;
+  }
+
+  .navComponent {
+    &:hover {
+      color:  @Brown-Dark;
+      border-bottom: 2px solid @Brown-Dark;
+    }
+
+
+  }
+
+  .login, .signup {
+    text-align: center;
+    float: right;
+    font-size: 17px;
+    padding: 18px;
+    color: @Brown-Basic;
+    cursor: pointer;
+
+    a {
+      color: @Brown-Basic;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &:hover {
+      border-bottom: 3px solid @Brown-Basic;
+      padding: 18px 18px 15px 18px;
+    }
+
+  }
+
+}
+
+#logo img {
+  height: 60px;
+  width: 120px;
+}

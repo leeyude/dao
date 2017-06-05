@@ -1,0 +1,80 @@
+@import "../../../../lib/styles/main.import.less";
+
+#login {
+  padding-top: 200px;
+  padding-bottom: 120px;
+  background-color: lighten(@Blue-Light, 7%);
+  font-family: @Type-Text;
+
+  .col-center {
+    margin: 0 auto;
+    float: none !important;
+  }
+
+  .login-group {
+    border: 1px solid #e6e6e6;
+    padding: 20px;
+    border-radius: 4px;
+    background-color: white;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.08), inset 0px 0px 0px 1px #f0f2f7;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  .row {
+    margin-top: 15px;
+    .col-xs-6 {
+      color: #777;
+
+      p {
+        margin-top: 1px;
+        margin-left: 8px;
+        width: auto;
+        float: left;
+      }
+
+      .rememberMe {
+        float: left;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border: solid 1px #777;
+        border-radius: 2px;
+      }
+
+      .rememberMeChecked {
+        float: left;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border: solid 1px @Brown-Basic;
+        border-radius: 2px;
+        background-color: @Brown-Basic;
+      }
+
+      .fa-check {
+        padding-top: 2px;
+        color: white;
+        text-align: center;
+      }
+    }
+  }
+
+  button {
+  width: 100%;
+  border: none;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 16px;
+
+  .btnGradient(top, @Brown-Light, @Brown-Basic);
+
+  &:hover {
+    .btnGradient(top, @Brown-Light, @Brown-Dark);
+  }
+}
+
+
+}

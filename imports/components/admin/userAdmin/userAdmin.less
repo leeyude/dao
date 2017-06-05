@@ -1,0 +1,54 @@
+@import "../../../../lib/styles/main.import.less";
+
+.userTypeBlock {
+  background-color: white;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  display: inline-block;
+  width: 100%;
+
+  .userType {
+    padding: 10px;
+    float: left;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 18px;
+
+    &+.userType {
+      margin-left: 15px;
+    }
+
+    &.selected {
+      border: 1px solid @Brown-Basic;
+      color: @Brown-Basic;
+      cursor: default;
+    }
+
+    &:hover {
+      border-bottom: 1px solid @Brown-Basic;
+      color: @Brown-Basic;
+    }
+  }
+}
+
+.userDataBlock {
+  background-color: white;
+  padding: 10px;
+  display: inline-block;
+  width: 100%;
+
+  .table-responsive {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+  }
+
+  .userDataButton {
+    margin-bottom: 10px;
+  }
+
+  .row {
+    margin-top: 10px;
+  }
+}

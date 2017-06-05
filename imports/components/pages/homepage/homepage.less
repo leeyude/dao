@@ -1,0 +1,191 @@
+@import "../../../../lib/styles/main.import.less";
+
+#homepage {
+  margin-top: 60px;
+  .landing{
+    height: 600px;
+    background: url("/images/Landingpage.png");
+    background-size: cover;
+    background-position: 50% 80%;
+
+    .contentHolder {
+      margin-top: 120px;
+      height: 400px;
+      padding-top: 20px;
+
+      .landingContent {
+        background-color: rgba(200, 200, 200, 0.3);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 4px;
+
+        .contentTitle {
+          font-family: @Type-Header;
+          font-size: 36px;
+          font-weight: 400;
+          color: white;
+          text-align: center;
+        }
+
+        .contentText {
+          font-family: @Type-Text;
+          font-size: 18px;
+          font-weight: 200;
+          color: white;
+          text-align: center;
+
+          h1 {
+            font-size: 20px;
+            text-align: center
+          }
+          ul {
+            text-align: left;
+          }
+        }
+      }
+
+      .signupBlock {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        margin-top: 30px;
+      }
+    }
+  }
+
+
+
+  .feature {
+    min-height: 400px;
+
+    .contentHolder {
+      margin-top: 60px;
+      display: inline-block;
+      width: 100%;
+
+      h1 {
+        text-align: center;
+        font-family: @Type-Header;
+        color: @Brown-Basic;
+
+      }
+
+      h3 {
+        text-align: center;
+        font-family: @Type-Text;
+        color: #777;
+        font-size: 20px;
+
+      }
+
+      .roleSelection {
+        display: inline-block;
+        width: 100%;
+        margin-top: 20px;
+
+        .roleOption {
+          width: 120px;
+          border: solid 1px #bbb;
+          padding: 20px;
+          border-radius: 4px;
+          text-align: center;
+          color: #bbb;
+
+
+          &:hover {
+            border: solid 1px @Brown-Basic;
+            color: @Brown-Basic;
+            cursor: pointer;
+          }
+        }
+
+        .roleOption.selected {
+          border: solid 1px @Brown-Basic;
+          background-color: @Brown-Basic;
+          color: white;
+          cursor: default;
+
+        }
+
+
+
+        .roleIsFarmer {
+          float: right;
+        }
+
+        .roleIsBuyer {
+          float: left;
+        }
+      }
+
+      .roleContent {
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        margin-bottom: 40px;
+
+        .roleContentColumn {
+          width: 100%;
+          border: solid 1px #eee;
+          border-radius: 4px;
+          background-color: white;
+          padding: 20px;
+          display: inline-block;
+          height: 400px;
+          margin-top: 20px;
+          margin-left: 10px;
+          margin-right: 10px;
+
+          h3 {
+            text-align: center;
+            color: @Brown-Basic;
+            font-family: @Type-Text;
+          }
+
+          .icon {
+            text-align: center;
+            img {
+              width: 120px;
+              height: 120px;
+            }
+          }
+
+          .roleContentText {
+            padding: 20px 20px 0 20px ;
+            color: #777;
+            text-align: left;
+          }
+
+        }
+      }
+    }
+
+    .signupBlock {
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 40px;
+      float: left;
+    }
+
+  }
+
+  .contact {
+    background-color: lighten(@Brown-Basic, 40%);
+
+    h1 {
+      text-align: center;
+      font-family: @Type-Header;
+      color: #555;
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+
+    .contactContent {
+      text-align: center;
+      color: #777;
+      padding-bottom: 60px;
+    }
+  }
+
+}
