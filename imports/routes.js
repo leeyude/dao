@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Header from './components/header/Header';
 import Homepage from './components/pages/homepage/Homepage';
 import Admin from './components/admin/Admin';
+import Tasting from './components/user/tasting/Tasting';
+
 import UploadDistrict from './components/admin/uploads/uploadDistrict';
 
 export default Routes = class Routes extends React.Component {
@@ -17,6 +19,7 @@ export default Routes = class Routes extends React.Component {
 
           <Route exact path="/admin" component={() => (<Admin/>)}/>
           <Route exact path="/upload_district" component={() => (<UploadDistrict/>)}/>
+          <Route exact path="/tasting" component={() => (<Tasting/>)}/>
         </div>
       </Router>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import UserAdmin from './userAdmin/UserAdmin';
-import EventAdmin from './eventAdmin/EventAdmin';
+import TastingAdmin from './tastingAdmin/TastingAdmin';
 import CoffeeAdmin from './coffeeAdmin/CoffeeAdmin';
 import "./admin.less";
 
@@ -18,7 +18,7 @@ export default Admin = class Admin extends React.Component {
     return ([
       {_id: 1, adminComponent: "userAdmin", title: "使用者", componentName: "UserAdmin", tag: <UserAdmin/>},
       {_id: 2, adminComponent: "coffeeAdmin", title: "咖啡資料", componentName: "CoffeeAdmin", tag: <CoffeeAdmin/>},
-      {_id: 3, adminComponent: "eventAdmin", title: "活動", componentName: "EventAdmin", tag: <EventAdmin/>}
+      {_id: 3, adminComponent: "tastingAdmin", title: "品嚐測試", componentName: "TastingAdmin", tag: <TastingAdmin/>}
     ])
   }
 

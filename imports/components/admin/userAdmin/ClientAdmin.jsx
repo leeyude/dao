@@ -10,7 +10,6 @@ export default class ClientAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userUpdate: "add", // and update
       clientDataLines: [],
       yearSelected: false,
       monthSelected: false,
@@ -19,7 +18,10 @@ export default class ClientAdmin extends React.Component {
       citySelected: "", // a city that is selected from the total list
       renderedDistricts: [], // according to the city selected, a list of districts of that city is rendered.
       isAddingUser: true, // false: updating from existing users
-      clientData: [],
+      clientDataView: {
+        skipped: 0,
+        numberOfRecords: 10
+      },
 
     };
   }
@@ -55,7 +57,7 @@ export default class ClientAdmin extends React.Component {
     const districts = this.state.renderedDistricts;
     return districts.map(function(eachDistrict){
       if(eachDistrict.City_County == this.state.citySelected){
-        return (<option key={eachDistrict._id}>{eachDistrict.District_Village}</option>)
+        return (<option key={eachDistrict._id} value={eachDistrict.District_Village}>{eachDistrict.District_Village}</option>)
       };
     }.bind(this));
   }
@@ -103,21 +105,72 @@ export default class ClientAdmin extends React.Component {
   }
 
   getClientData(){
-    var clientData = (
-      <tr>
-        <td>leeyude@umich.edu</td>
-        <td>Yu-De</td>
-        <td>Lee</td>
-        <td>松山區延吉街40號3F</td>
-        <td>台北市</td>
-        <td>105</td>
-        <td>0955239734</td>
-        <td>1983-Jan-28</td>
-        <td>M</td>
-        <td>2017-May-14</td>
-      </tr>
-    );
-    return clientData;
+    const userDataHandle = Meteor.subscribe("clientUserData", this.state.clientDataView);
+    const clientData = Meteor.users.find().fetch();
+    return clientData.map((eachUser)=>{
+      const createdAt = moment(eachUser.createdAt).format('YYYY-MMM-D');
+      return (
+        <tr key={eachUser._id} onClick={()=>this.updateClientData(eachUser)}>
+          <td>{eachUser.emails[0].address}</td>
+          <td>{eachUser.profile.firstName}</td>
+          <td>{eachUser.profile.lastName}</td>
+          <td>{eachUser.profile.address}</td>
+          <td>{eachUser.profile.city}</td>
+          <td>{eachUser.profile.district}</td>
+          <td>{eachUser.profile.phone}</td>
+          <td>{eachUser.profile.birthday.year}-{eachUser.profile.birthday.month}-{eachUser.profile.birthday.day}</td>
+          <td>{eachUser.profile.gender}</td>
+          <td>{createdAt}</td>
+        </tr>
+      );
+    });
+  }
+
+  clickAddClient(e){
+    e.preventDefault();
+    this.setState({isAddingUser: true});
+    $('#email').val('');
+    $('#password').val('');
+    $('#firstName').val('');
+    $('#lastName').val('');
+    $('#address').val('');
+    $('#city').val('');
+    $('#district').val('');
+    $('#phoneNumber').val('');
+    $('#year').val('');
+    $('#month').val('');
+    $('#day').val('');
+    $('#gender').val('');
+  }
+
+  updateClientData(user){
+    $('#addClientButton').click();
+    this.setState({isAddingUser: false});
+    this.setState({citySelected: user.profile.city});
+    $('#city').val(user.profile.city);
+    this.setState({yearSelected: user.profile.birthday.year});
+    this.setState({monthSelected: user.profile.birthday.month});
+    
+    Tracker.autorun(()=> {
+      Meteor.subscribe("districts", user.profile.city);
+      const districts = Districts.find().fetch();
+      this.setState({renderedDistricts: districts});
+      $('#email').val(user.emails[0].address);
+      $('#password').val();
+      $('#firstName').val(user.profile.firstName);
+      $('#lastName').val(user.profile.lastName);
+      $('#address').val(user.profile.address);
+      $('#phoneNumber').val(user.profile.phone);
+      $('#year').val(user.profile.birthday.year);
+      $('#month').val(user.profile.birthday.month);
+      $('#day').val(user.profile.birthday.day);
+      $('#gender').val(user.profile.gender);
+      $('#district').val(user.profile.district);
+    });
+
+
+
+
   }
 
   userHandlingText(){
@@ -177,16 +230,10 @@ export default class ClientAdmin extends React.Component {
     return false;
   }
 
-  cancelAdding(e){
-    e.preventDefault();
-    this.setState({isAddingUser: true});
-    return false;
-  }
-
   render() {
     return (
       <div id="userData" className="row">
-        <button type="button" className="userDataButton btn btn-info btn-lg" data-toggle="modal" data-target="#clientDataModal">新增資料</button>
+        <button id="addClientButton" type="button" className="userDataButton btn btn-info btn-lg" data-toggle="modal" data-target="#clientDataModal" onClick={this.clickAddClient.bind(this)}>新增資料</button>
 
         <div className="modal fade" id="clientDataModal" role="dialog">
           <div className="modal-dialog modal-lg">
@@ -283,7 +330,7 @@ export default class ClientAdmin extends React.Component {
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.addUser.bind(this)}>{this.userHandlingText().text}</button>
 
-                <button type="button" className="btn btn-default" data-dismiss="modal" onClick={this.cancelAdding.bind(this)}>取消</button>
+                <button type="button" className="btn btn-default" data-dismiss="modal">取消</button>
 
               </div>
             </div>
@@ -299,7 +346,7 @@ export default class ClientAdmin extends React.Component {
                 <th>Last Name</th>
                 <th>Address</th>
                 <th>City</th>
-                <th>Post Code</th>
+                <th>District</th>
                 <th>Phone #</th>
                 <th>Birthday</th>
                 <th>Gender</th>

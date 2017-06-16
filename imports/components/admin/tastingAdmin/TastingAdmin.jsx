@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export default EventAdmin = class EventAdmin extends React.Component {
+export default class TastingAdmin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,8 +10,8 @@ export default EventAdmin = class EventAdmin extends React.Component {
 
   render() {
     return (
-      <div id="eventAdmin">
-        event admin
+      <div id="tastingAdmin">
+        tasting admin
       </div>
     );
   }
